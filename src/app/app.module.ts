@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FollowerComponent } from './follower/follower.component';
+import { FollowerService } from './services/follower.service';
+import { ErrorHandler } from '@angular/core';
+import { AppErrorHandler } from './common/app-error-handler';
 
 @NgModule({
   declarations: [
@@ -13,7 +16,10 @@ import { FollowerComponent } from './follower/follower.component';
     BrowserModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    FollowerService,
+    { provide: ErrorHandler, useClass: AppErrorHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

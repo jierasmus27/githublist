@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FollowerService } from '../services/follower.service';
 
 @Component({
   selector: 'follower',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./follower.component.css']
 })
 export class FollowerComponent implements OnInit {
+  followers: any[];
 
-  constructor() { }
+  constructor(private service: FollowerService) { }
 
   ngOnInit() {
+    this.service.getAll()
+      .subscribe(followers => this.followers = followers);
+
+    console.log(this.followers);
   }
 
 }
